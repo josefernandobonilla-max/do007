@@ -1,0 +1,6 @@
+- name: Probar conectividad con los servidores
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Verificar que Ansible puede conectarse al servidor
+      ansible.builtin.ping:
