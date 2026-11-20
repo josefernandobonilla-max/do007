@@ -3,5 +3,8 @@
   hosts: all
   become: true
   tasks:
-    - name: Ping test
-      ping:
+    - name: Actualizar todos los paquetes a la última versión
+      ansible.builtin.dnf:
+      name: "*"
+      state: latest
+      update_cache: true
