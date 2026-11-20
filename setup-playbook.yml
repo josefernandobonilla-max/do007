@@ -3,8 +3,10 @@
   hosts: all
   become: true
   tasks:
-    - name: Actualizar todos los paquetes a la última versión
-      ansible.builtin.dnf:
-       name: "*"
-       state: latest
-       update_cache: true
+    - name: Crear la ruta /temp/obs/paquetes
+      ansible.builtin.file:
+        path: /temp/obs/paquetes
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
