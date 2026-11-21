@@ -1,12 +1,14 @@
 ---
 - name: Basic System Setup
   hosts: all
-  become: true
+  become: yes
+
+  vars:
+    user_name: "enma"
+
   tasks:
-    - name: Crear la ruta /temp/obs/paquetes
-      ansible.builtin.file:
-        path: /temp/obs/paquetes
-        state: directory
-        owner: root
-        group: root
-        mode: '0755'
+    - name: Crear cuenta de usuario
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        state: present
+        create_home: yes
