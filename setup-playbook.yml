@@ -25,7 +25,7 @@
 
     - name: Configurar firewall
       ansible.builtin.firewalld:
-        service: "{{ package_name }}"
+        service: http
         permanent: yes
         state: enabled
       when: inventory_hostname in groups['web']
