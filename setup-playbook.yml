@@ -1,11 +1,39 @@
 ---
 - name: Basic System Setup
-  hosts: all
+  hosts: web
   become: yes
 
   tasks:
     - name: Crear cuenta de usuario
       ansible.builtin.user:
-        name: "{{ user_name }}"
+        name: "{{ item }}"
         state: present
         create_home: yes
+      loop:
+        - alice
+        - bob
+        - carol
+        - roger
+        - colin
+        - sean
+
+    - name: Instalar package
+      ansible.builtin.package:
+        name: "{{ package_name }}"
+        state: present
+      when: inventory_hostname in groups['web']
+
+    - name: Configurar firewall
+      ansible.builtin.firewalld:
+        service: "{{ package_name }}"
+        permanent: yes
+        state: enabled
+      when: inventory_hostname in groups['web']
+      notify:
+        - Reload firewalld
+
+  handlers:
+    - name: Reload firewalld
+      ansible.builtin.service:
+        name: firewalld
+        state: reloaded
