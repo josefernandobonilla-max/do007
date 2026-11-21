@@ -23,6 +23,13 @@
         state: present
       when: inventory_hostname in groups['web']
 
+    - name: habilitar y arrancar el servicio
+      ansible.builtin.service:
+        name: "{{ packege_name }}"
+        state: started
+        enabled: yes
+      when: inventory_hostname in groups['web']
+
     - name: Configurar firewall
       ansible.builtin.firewalld:
         service: http
