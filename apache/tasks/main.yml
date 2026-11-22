@@ -10,11 +10,6 @@
     state: started
     enabled: true
 
-- name: Install firewalld
-  ansible.builtin.package:
-    name: firewalld
-    state: present
-
 - name: Allow HTTP traffic on web servers
   ansible.posix.firewalld:
     service: http
