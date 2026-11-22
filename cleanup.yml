@@ -11,11 +11,6 @@
         state: absent
       when: inventory_hostname in groups['web']
 
-    - name: Remove firewalld
-      ansible.builtin.package:
-        name: firewalld
-        state: absent
-
     - name: Delete created users
       ansible.builtin.user:
         name: "{{ item }}"
