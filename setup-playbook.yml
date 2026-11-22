@@ -39,6 +39,11 @@
       notify:
         - Reload firewalld
 
+    - name: Update MOTD from Jinja2 Template
+      ansible.builtin.template:
+        src: templates/motd.j2
+        dest: /etc/motd
+
   handlers:
     - name: Reload firewalld
       ansible.builtin.service:
