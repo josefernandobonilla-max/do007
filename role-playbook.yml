@@ -1,6 +1,6 @@
 ---
 - name: Deploy Apache using a Collection
-  hosts: "{{ ansible_host }}"
+  hosts: all
   become: true
   roles:
     - apache
