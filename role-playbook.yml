@@ -1,6 +1,6 @@
 ---
 - name: Deploy Apache using a Collection
-  hosts: web
+  hosts: "{{ hostsname }}"
   become: true
   roles:
     - apache
