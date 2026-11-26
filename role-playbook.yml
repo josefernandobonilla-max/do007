@@ -1,5 +1,6 @@
 ---
 - name: Deploy Apache using a Collection
   hosts: all
+  become: yes
   roles:
     - apache
